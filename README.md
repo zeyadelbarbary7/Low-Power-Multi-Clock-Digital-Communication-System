@@ -82,42 +82,59 @@ Compare (A = B) • Compare (A > B) • Shift Right (A >> 1) • Shift Left (A <
 
 ## 📂 Repository Structure
 
-Low-Power-Multi-Clock-Digital-Communication-System/
-│
-├── RTL/                          →  Verilog RTL source files
-│   ├── alu.v
-│   ├── regfile.v
-│   ├── sys_ctrl.v
-│   ├── uart_tx.v
-│   ├── uart_rx.v
-│   ├── async_fifo.v
-│   ├── data_sync.v
-│   ├── rst_sync.v
-│   ├── clock_divider.v
-│   ├── pulse_gen.v
-│   ├── clock_gating.v
-│   └── sys_top.v
-│
-├── tb/                           →  Testbenches & simulation files
-│   └── tb_sys_top.v
-│
-├── docs/                         →  Documentation & diagrams
-│   ├── Final_System.pdf
-│   └── block_diagram.png
-│
-├── synthesis/                    →  Synthesis scripts & reports
-│   ├── scripts/
-│   ├── reports/
-│   └── netlist/
-│
-├── dft/                          →  Design for Test files
-│   └── scan_insertion/
-│
-├── gate_level/                   →  Gate-level netlists & GLS files
-│   └── post_synth_netlist.v
-│
-└── README.md
+/RTL/ – Verilog RTL source files
 
+alu.v
+
+regfile.v
+
+sys_ctrl.v
+
+uart_tx.v
+
+uart_rx.v
+
+async_fifo.v
+
+data_sync.v
+
+rst_sync.v
+
+clock_divider.v
+
+pulse_gen.v
+
+clock_gating.v
+
+sys_top.v
+
+/tb/ – Testbenches and verification files
+
+tb_sys_top.v
+
+/docs/ – Documentation and diagrams
+
+Final_System.pdf
+
+block_diagram.png
+
+/synthesis/ – Synthesis scripts, reports, and netlists
+
+scripts/
+
+reports/
+
+netlist/
+
+/dft/ – Design for Test files
+
+scan_insertion/
+
+/gate_level/ – Gate-level netlists and simulation files
+
+post_synth_netlist.v
+
+README.md – Project overview and documentation
 
 ---
 
