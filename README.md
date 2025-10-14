@@ -7,6 +7,27 @@ It’s a complete ASIC-style design covering RTL, verification, synthesis, and g
 
 ---
 
+## 🖼️ Design Visuals
+
+### 🧱 System Block Diagram
+The following diagram illustrates the main structure of the **Low Power Multi-Clock Digital Communication System**:
+
+<p align="center">
+  <img src="docs/block_diagram.png" alt="Block Diagram" width="700"/>
+</p>
+
+---
+
+### 📊 Simulation Waveform
+Waveform output showing UART transmission, ALU result validation, and clock domain synchronization:
+
+<p align="center">
+  <img src="docs/waveform.png" alt="Simulation Waveform" width="700"/>
+</p>
+
+---
+
+
 ## 🧩 System Architecture
 
 ### 🔸 Clock Domain 1 (REF_CLK – 50 MHz)
