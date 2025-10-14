@@ -18,16 +18,6 @@ The following diagram illustrates the main structure of the **Low Power Multi-Cl
 
 ---
 
-### 📊 Simulation Waveform
-Waveform output showing UART transmission, ALU result validation, and clock domain synchronization:
-
-<p align="center">
-  <img src="docs/waveform.png" alt="Simulation Waveform" width="700"/>
-</p>
-
----
-
-
 ## 🧩 System Architecture
 
 ### 🔸 Clock Domain 1 (REF_CLK – 50 MHz)
@@ -141,9 +131,27 @@ Compare (A = B) • Compare (A > B) • Shift Right (A >> 1) • Shift Left (A <
 ---
 
 ## 🔬 Verification & Testing
-- Simulated using **ModelSim/QuestaSim**.  
+- Simulated using **ModelSim**.  
 - Verified UART communication flow, ALU results, and CDC correctness.  
 - Includes testbench for automated command-response validation.
+
+---
+
+### 📊 Simulation Waveform
+Waveform output showing UART transmission, ALU result validation, and clock domain synchronization:
+
+<p align="center">
+  <img src="docs/waveform.png" alt="Simulation Waveform" width="700"/>
+</p>
+
+---
+
+### 🧾 Simulation Transcript
+Below is a screenshot from the **ModelSim/QuestaSim** transcript window showing the number of passed test cases after running all verification scenarios:
+
+<p align="center">
+  <img src="docs/transcript.png" alt="Simulation Transcript Passed Cases" width="700"/>
+</p>
 
 ---
 
