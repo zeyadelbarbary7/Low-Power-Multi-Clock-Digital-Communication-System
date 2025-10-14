@@ -84,37 +84,37 @@ Compare (A = B) • Compare (A > B) • Shift Right (A >> 1) • Shift Left (A <
 
 Low-Power-Multi-Clock-Digital-Communication-System/
 │
-├── RTL/ # All Verilog RTL source files
-│ ├── alu.v
-│ ├── regfile.v
-│ ├── sys_ctrl.v
-│ ├── uart_tx.v
-│ ├── uart_rx.v
-│ ├── async_fifo.v
-│ ├── data_sync.v
-│ ├── rst_sync.v
-│ ├── clock_divider.v
-│ ├── pulse_gen.v
-│ ├── clock_gating.v
-│ └── sys_top.v
+├── RTL/                     # All Verilog RTL source files
+│   ├── alu.v
+│   ├── regfile.v
+│   ├── sys_ctrl.v
+│   ├── uart_tx.v
+│   ├── uart_rx.v
+│   ├── async_fifo.v
+│   ├── data_sync.v
+│   ├── rst_sync.v
+│   ├── clock_divider.v
+│   ├── pulse_gen.v
+│   ├── clock_gating.v
+│   └── sys_top.v
 │
 ├── docs/
-│ ├── Final_System.pdf
-│ └── block_diagram.png
+│   ├── Final_System.pdf
+│   └── block_diagram.png
 │
-├── tb/ # Testbench and verification files
-│ └── tb_sys_top.v
+├── tb/                      # Testbench and verification files
+│   └── tb_sys_top.v
 │
 ├── synthesis/
-│ ├── scripts/
-│ ├── reports/
-│ └── netlist/
+│   ├── scripts/
+│   ├── reports/
+│   └── netlist/
 │
 ├── dft/
-│ └── scan_insertion/
+│   └── scan_insertion/
 │
 ├── gate_level/
-│ └── post_synth_netlist.v
+│   └── post_synth_netlist.v
 │
 └── README.md
 
