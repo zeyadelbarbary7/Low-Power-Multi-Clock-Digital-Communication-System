@@ -1,78 +1,141 @@
-# Low Power Multi-Clock Digital Communication System
+# ⚡ Low Power Multi-Clock Digital Communication System
 
-## Overview
-A Verilog-based ASIC project implementing a **low-power multi-clock digital communication system**.  
-It supports UART-based command communication between a master and a custom processing system with an ALU and register file.
+### 🧠 Overview
+This project implements a **low-power digital communication system** operating on **multiple clock domains**, designed entirely in **Verilog HDL**.  
+The system supports UART-based communication with synchronized data transfer between clock domains, an ALU for computation, and a configurable register file.  
+It’s a complete ASIC-style design covering RTL, verification, synthesis, and gate-level simulation.
 
-## 🔧 System Description
-The system operates across **two clock domains**:
-- **Clock Domain 1 (REF_CLK – 50 MHz)**  
-  Contains: RegFile, ALU, Clock Gating, SYS_CTRL.
-- **Clock Domain 2 (UART_CLK – 3.6864 MHz)**  
-  Contains: UART_TX, UART_RX, Pulse Generator, Clock Dividers.
-- Synchronization blocks: RST Synchronizer, Data Synchronizer, ASYNC FIFO.
+---
 
-## 🧩 Supported Operations
-### ALU Operations
-Addition, Subtraction, Multiplication, Division, AND, OR, NAND, NOR, XOR, XNOR,  
-Compare (A = B, A > B), Shift Right (A >> 1), Shift Left (A << 1).
+## 🧩 System Architecture
 
-### Register File Operations
-- Register Write
-- Register Read
+### 🔸 Clock Domain 1 (REF_CLK – 50 MHz)
+- **RegFile** – Configurable register file storing operands and control values.  
+- **ALU** – Executes arithmetic and logic operations.  
+- **Clock Gating** – Enables/disables clocks for low-power operation.  
+- **SYS_CTRL** – Core control unit handling command decoding and data routing.
 
-### Commands
-| Command | Description | Frames |
-|----------|--------------|---------|
-| `0xAA` | Register Write | 3 |
-| `0xBB` | Register Read | 2 |
-| `0xCC` | ALU with Operands | 4 |
-| `0xDD` | ALU without Operands | 2 |
+### 🔸 Clock Domain 2 (UART_CLK – 3.6864 MHz)
+- **UART_TX** – Transmits serial frames to the master.  
+- **UART_RX** – Receives serial frames from the master.  
+- **PULSE_GEN** – Generates timing pulses.  
+- **Clock Divider** – Generates lower-frequency UART clocks.
 
-## 🧠 Sequence of Operation
-1. Initial configuration through Register File (addresses 0x2 and 0x3).  
-2. Master sends commands via UART_RX.  
-3. SYS_CTRL decodes commands and performs the required operation using ALU or RegFile.  
-4. Results are transmitted back through UART_TX.
+### 🔸 Synchronization Blocks
+- **RST Synchronizer** – Safely synchronizes asynchronous reset signals.  
+- **Data Synchronizer** – Manages safe multi-bit data transfer between clock domains.  
+- **ASYNC FIFO** – Buffers data between REF_CLK and UART_CLK domains.
 
-## ⚙️ System Blocks
-Each module (Verilog file) is inside `/rtl`:
-- **regfile.v** – Register file with configurable registers
-- **alu.v** – Arithmetic Logic Unit
-- **sys_ctrl.v** – System control and command decoder
-- **uart_tx.v / uart_rx.v** – UART transmitter and receiver
-- **clock_divider.v / clock_gating.v** – Power and frequency management
-- **async_fifo.v** – Asynchronous FIFO for clock domain crossing
-- **data_sync.v / rst_sync.v** – Synchronizers
-- **pulse_gen.v** – Generates control pulses
+---
 
-## 🧪 Verification
-A self-checking Verilog testbench validates:
-- UART communication
-- Command execution
-- Clock domain crossing
-- ALU and Register File operations
+## ⚙️ Supported Operations
 
-## 🛠️ Tools Used
-- **ModelSim / QuestaSim** – RTL and GLS simulation  
+### 🔹 ALU Operations
+Addition • Subtraction • Multiplication • Division • AND • OR • NAND • NOR • XOR • XNOR •  
+Compare (A = B) • Compare (A > B) • Shift Right (A >> 1) • Shift Left (A << 1)
+
+### 🔹 Register File Operations
+- Register File **Write**  
+- Register File **Read**
+
+---
+
+## 🧾 UART Commands
+
+| Command Type | Code  | Frames | Description |
+|:-------------:|:-----:|:------:|:------------|
+| Register Write | `0xAA` | 3 | Write data to register file |
+| Register Read  | `0xBB` | 2 | Read data from register file |
+| ALU with Operands | `0xCC` | 4 | Perform ALU operation using operands |
+| ALU without Operands | `0xDD` | 2 | Perform ALU operation using stored values |
+
+---
+
+## 🔄 Sequence of Operation
+
+1. **Initialization** — System configuration via Register File (addresses `0x2` and `0x3`).  
+2. **Command Reception** — Master sends UART frames to the RX interface.  
+3. **Processing** — `SYS_CTRL` decodes the command and triggers the ALU or RegFile.  
+4. **Result Transmission** — Processed data is sent back through `UART_TX`.  
+5. **Clock & Data Synchronization** — Ensured through synchronizers and asynchronous FIFO.
+
+---
+
+## 🧠 System Specifications
+
+| Parameter | Description |
+|:-----------|:-------------|
+| REF_CLK | 50 MHz reference clock |
+| UART_CLK | 3.6864 MHz UART clock |
+| Division Ratio | Configurable via RegFile (`REG3`) |
+| Parity & Prescale | Configurable via RegFile (`REG2`) |
+
+---
+
+## 🧰 Tools Used
+- **ModelSim / QuestaSim** – RTL and gate-level simulation  
 - **Synopsys Design Compiler** – Synthesis  
-- **Cadence Genus / Innovus** – Place and Route  
-- **Tetramax / DFT Compiler** – Scan insertion and testability  
+- **Cadence Genus / Innovus** – Physical design & place-and-route  
+- **Tetramax / DFT Compiler** – Scan insertion and test verification  
 
-## 🧮 ASIC Flow
-1. RTL Design  
-2. RTL Verification  
-3. Synthesis and Timing Checks  
-4. DFT Insertion  
-5. Gate-Level Simulation  
-6. ASIC Flow and GDSII Generation  
+---
 
-## 📁 Repository Structure
-See `/rtl`, `/tb`, `/synthesis`, `/dft`, `/gate_level`, and `/scripts` folders.
+## 📂 Repository Structure
 
-## 👤 Author
+Low-Power-Multi-Clock-Digital-Communication-System/
+│
+├── RTL/ # All Verilog RTL source files
+│ ├── alu.v
+│ ├── regfile.v
+│ ├── sys_ctrl.v
+│ ├── uart_tx.v
+│ ├── uart_rx.v
+│ ├── async_fifo.v
+│ ├── data_sync.v
+│ ├── rst_sync.v
+│ ├── clock_divider.v
+│ ├── pulse_gen.v
+│ ├── clock_gating.v
+│ └── sys_top.v
+│
+├── docs/
+│ ├── Final_System.pdf
+│ └── block_diagram.png
+│
+├── tb/ # Testbench and verification files
+│ └── tb_sys_top.v
+│
+├── synthesis/
+│ ├── scripts/
+│ ├── reports/
+│ └── netlist/
+│
+├── dft/
+│ └── scan_insertion/
+│
+├── gate_level/
+│ └── post_synth_netlist.v
+│
+└── README.md
+
+---
+
+## 🔬 Verification & Testing
+- Simulated using **ModelSim/QuestaSim**.  
+- Verified UART communication flow, ALU results, and CDC correctness.  
+- Includes testbench for automated command-response validation.
+
+---
+
+## 👨‍💻 Author
 **Zeyad Elbarbary**  
 Computer and Systems Engineering Student, Ain Shams University  
+📧 [zeyadelbarbary7@gmail.com](mailto:zeyadelbarbary7@gmail.com)
+
+---
 
 ## 🪪 License
-MIT License
+This project is released under the **MIT License** – free to use, modify, and distribute with credit.
+
+---
+> ⭐ If you find this project useful, consider starring the repository!
