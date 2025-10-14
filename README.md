@@ -150,7 +150,7 @@ Waveform output showing UART transmission, ALU result validation, and clock doma
 Below is a screenshot from the **ModelSim/QuestaSim** transcript window showing the number of passed test cases after running all verification scenarios:
 
 <p align="center">
-  <img src="docs/transcript.png" alt="Simulation Transcript Passed Cases" width="700"/>
+  <img src="docs/Transcript.png" alt="Simulation Transcript Passed Cases" width="700"/>
 </p>
 
 ---
